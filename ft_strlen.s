@@ -16,6 +16,9 @@ M_FT_STRLEN:
 
 count:
 	cmp byte [rdi + rax], 0	; if (s + rax == 0)
-	jne ret					; 	return (rax)
+	je exit					; 	return (rax)
 	inc rax					; else ++rax
 	jmp count				; do it in a loop
+
+exit:
+	ret
