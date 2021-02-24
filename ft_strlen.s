@@ -1,14 +1,21 @@
 ; size_t ft_strlen(const char *s)
 
-segment .text
-	global _ft_strlen
+%ifdef __LINUX__
+    %define M_FT_STRLEN ft_strlen
+%else
+    %define M_FT_STRLEN _ft_strlen
+%endif
 
-_ft_strlen
-	mov rax, 0	; rax = 0 (int i = 0)
+global M_FT_STRLEN
+
+section .text
+
+M_FT_STRLEN:
+	mov eax, 0	; rax = 0 (int i = 0)
 	jmp count	; count()
 
-count
-	cmp BYTE[rdi + rax], 0	; if (s + rax == 0)
-	je ret					; 	return (rax)
+count:
+	cmp byte [rdi + rax], 0	; if (s + rax == 0)
+	jne ret					; 	return (rax)
 	inc rax					; else ++rax
 	jmp count				; do it in a loop
