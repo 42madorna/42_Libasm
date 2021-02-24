@@ -6,7 +6,7 @@
 #    By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 15:33:44 by madorna-          #+#    #+#              #
-#    Updated: 2021/02/24 16:35:51 by madorna-         ###   ########.fr        #
+#    Updated: 2021/02/24 16:46:29 by madorna-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ bonus:			${OBJS} ${OBJS_BONUS}
 				@ar rcs ${NAME} ${OBJS} ${OBJS_BONUS}
 
 clean:
-				@rm -f $(OBJECTS) ${OBJS_BONUS}
+				@rm -f $(OBJS) ${OBJS_BONUS}
 
 fclean:			clean
 				@rm -f $(NAME)
@@ -51,7 +51,7 @@ fclean:			clean
 re:				fclean all
 
 main:			all
-				@gcc -c -Wall -Wextra -Werror -lasm main.c -o exec
+				@gcc -Wall -Wextra -Werror -L. -lasm -o exec main.c
 
 .PHONY:
 				clean fclean all re bonus
