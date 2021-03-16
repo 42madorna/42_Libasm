@@ -5,17 +5,16 @@ section .text
 	global _ft_read
 
 _ft_read:
-	mov rax, 0x2000003
-	syscall
-	jc err
+	mov rax, 0x2000003			; save read (0x2000003) into rax
+	syscall						; syscall rax (read) and save its return into rax
+	jc err						; jump if carry (if there was an error calling read)
 
 exit:
-	;call ___error
-	ret						; return (rax)
+	ret							; return (rax)
 
 err:
-	mov r15, rax
-	call ___error
-	mov [rax], r15
-	mov rax, -1
-	ret
+	mov r15, rax				; move rax into r15
+	call ___error				; call ___error to get error what happened in read
+	mov [rax], r15				; save the error
+	mov rax, -1					; rax = -1
+	ret							; return (rax)
