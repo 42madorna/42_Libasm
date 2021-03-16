@@ -6,7 +6,7 @@
 #    By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 15:33:44 by madorna-          #+#    #+#              #
-#    Updated: 2021/03/16 00:31:38 by madorna-         ###   ########.fr        #
+#    Updated: 2021/03/16 11:01:35 by madorna-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,10 +56,10 @@ fclean:			clean
 re:				fclean all
 
 main:			all
-				@gcc -Wall -Wextra -Werror -L. -lasm -o exec testslopez.c -g3 -fsanitize=address
+				@gcc -Wall -Wextra -Werror -L. -lasm -o exec main.c #-g3 -fsanitize=address
 
 exec:			main
-				./exec
+				./exec $(arg)
 
 .PHONY:
 				clean fclean all re bonus
