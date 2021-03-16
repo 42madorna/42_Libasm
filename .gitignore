@@ -7,3 +7,4 @@ a.out
 *.a
 testlib.c
 testslopez.c
+libasm.a
