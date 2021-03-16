@@ -2,3 +2,8 @@
 exec
 a.out
 *.o
+*.dSYM
+.vscode
+*.a
+testlib.c
+testslopez.c

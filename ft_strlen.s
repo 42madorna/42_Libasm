@@ -1,24 +1,17 @@
 ; size_t ft_strlen(const char *s)
 
-%ifdef __LINUX__
-    %define M_FT_STRLEN ft_strlen
-%else
-    %define M_FT_STRLEN _ft_strlen
-%endif
-
-global M_FT_STRLEN
-
 section .text
+	global _ft_strlen
 
-M_FT_STRLEN:
+_ft_strlen:
 	mov eax, 0	; rax = 0 (int i = 0)
-	jmp count	; count()
+;	jmp count	; count() NOT NECESSARY because ASM auto jmp to next section
 
 count:
-	cmp byte [rdi + rax], 0	; if (s + rax == 0)
-	je exit					; 	return (rax)
+	cmp BYTE[rdi + rax], 0	; if (s + rax == 0)
+	je exit					; 	return (rax) ; je,jz == equal -> (cmp 0 == 0)
 	inc rax					; else ++rax
 	jmp count				; do it in a loop
 
 exit:
-	ret
+	ret						; return (rax)

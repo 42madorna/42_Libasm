@@ -6,13 +6,18 @@
 #    By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/24 15:33:44 by madorna-          #+#    #+#              #
-#    Updated: 2021/02/24 16:46:29 by madorna-         ###   ########.fr        #
+#    Updated: 2021/03/16 00:31:38 by madorna-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	libasm.a
 
-SRCS		=	ft_strlen.s
+SRCS		=	ft_strlen.s														\
+				ft_strcpy.s														\
+				ft_strcmp.s														\
+				ft_write.s														\
+				ft_read.s														\
+				ft_strdup.s
 
 SRCS_BONUS	=	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c\
 				ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c\
@@ -29,7 +34,7 @@ else
 endif
 
 %.o	: %.s
-	nasm $(NASMFLAGS) $< -o $@
+	@nasm $(NASMFLAGS) $< -o $@
 
 INCLUDES	=	./
 
@@ -51,7 +56,10 @@ fclean:			clean
 re:				fclean all
 
 main:			all
-				@gcc -Wall -Wextra -Werror -L. -lasm -o exec main.c
+				@gcc -Wall -Wextra -Werror -L. -lasm -o exec testslopez.c -g3 -fsanitize=address
+
+exec:			main
+				./exec
 
 .PHONY:
 				clean fclean all re bonus
